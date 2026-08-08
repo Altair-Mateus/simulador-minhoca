@@ -12,11 +12,6 @@ type
 
   TServiceMinhoca = class
   private
-    const
-    FSUBIDA = 5.0;
-    FCAIDA = 3.0;
-
-  private
     FMinhoca: TMinhoca;
     FEstado: TEstadoMinhoca;
     FOnPosicaoAlterada: TEventoPosicaoMinhoca;
@@ -91,7 +86,7 @@ end;
 
 procedure TServiceMinhoca.CriarMinhoca(const pProfundidade, pAvanco, pQueda: Double);
 begin
-  FMinhoca := FMinhoca.Create;
+  FMinhoca := TMinhoca.Create;
 
   FMinhoca.Profundidade := pProfundidade;
   FMinhoca.Avanco := pAvanco;
@@ -153,11 +148,10 @@ end;
 
 procedure TServiceMinhoca.Subir;
 begin
-  FMinhoca.Posicao := (FMinhoca.Posicao + FMinhoca.Avanco);
+  FMinhoca.Posicao :=
+    FMinhoca.Posicao + FMinhoca.Avanco;
 
   FMinhoca.IncSubida;
-
-  NotificarPosicao;
 
   if (FMinhoca.Posicao >= FMinhoca.Profundidade) then
   begin
@@ -171,11 +165,12 @@ begin
     Exit;
   end;
 
+  NotificarPosicao;
+
   if (FMinhoca.Posicao >= (FMinhoca.Profundidade / 2)) then
     NotificarChegouNaMetade;
 
   FEstado := emCaindo;
-
 end;
 
 procedure TServiceMinhoca.ValidaEventos;

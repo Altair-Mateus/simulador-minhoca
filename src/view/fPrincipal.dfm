@@ -3,21 +3,26 @@ object frmPricipal: TfrmPricipal
   Top = 0
   BorderStyle = bsSingle
   Caption = 'Simulador de Minhoca'
-  ClientHeight = 441
-  ClientWidth = 624
+  ClientHeight = 628
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -13
   Font.Name = 'Arial'
   Font.Style = []
+  KeyPreview = True
   Position = poScreenCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
   TextHeight = 16
   object pnlPrincipal: TPanel
     Left = 0
     Top = 0
-    Width = 624
-    Height = 441
+    Width = 784
+    Height = 628
     Align = alClient
     Color = clWhite
     Padding.Left = 10
@@ -26,10 +31,12 @@ object frmPricipal: TfrmPricipal
     Padding.Bottom = 10
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 624
+    ExplicitHeight = 441
     object pnlFundoDados: TPanel
       Left = 11
       Top = 11
-      Width = 602
+      Width = 762
       Height = 96
       Align = alTop
       BevelOuter = bvNone
@@ -43,7 +50,7 @@ object frmPricipal: TfrmPricipal
         AlignWithMargins = True
         Left = 1
         Top = 1
-        Width = 600
+        Width = 760
         Height = 94
         Margins.Left = 1
         Margins.Top = 1
@@ -107,7 +114,114 @@ object frmPricipal: TfrmPricipal
           Height = 47
           Caption = 'Iniciar'
           TabOrder = 3
+          OnClick = btnIniciarClick
         end
+      end
+    end
+    object pnlFundoInfoMovimento: TPanel
+      Left = 11
+      Top = 576
+      Width = 762
+      Height = 41
+      Align = alBottom
+      BevelOuter = bvNone
+      Color = clBlack
+      ParentBackground = False
+      TabOrder = 1
+      ExplicitLeft = 224
+      ExplicitTop = 200
+      ExplicitWidth = 185
+      object pnlInfoMovimento: TPanel
+        AlignWithMargins = True
+        Left = 1
+        Top = 1
+        Width = 760
+        Height = 39
+        Margins.Left = 1
+        Margins.Top = 1
+        Margins.Right = 1
+        Margins.Bottom = 1
+        Align = alClient
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitLeft = 208
+        ExplicitTop = 0
+        ExplicitWidth = 185
+        ExplicitHeight = 41
+        object lblPosicao: TLabel
+          Left = 321
+          Top = 12
+          Width = 62
+          Height = 19
+          Caption = 'Posi'#231#227'o'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object lblSubidas: TLabel
+          Left = 476
+          Top = 12
+          Width = 63
+          Height = 19
+          Caption = 'Subidas'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object pnlstatus: TPanel
+          Left = 0
+          Top = 0
+          Width = 305
+          Height = 39
+          Align = alLeft
+          BevelOuter = bvNone
+          Caption = 'Subindo'
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 0
+        end
+      end
+    end
+    object pnlMinhoca: TPanel
+      AlignWithMargins = True
+      Left = 11
+      Top = 117
+      Width = 762
+      Height = 449
+      Margins.Left = 0
+      Margins.Top = 10
+      Margins.Right = 0
+      Margins.Bottom = 10
+      Align = alClient
+      BevelOuter = bvNone
+      Color = clSienna
+      ParentBackground = False
+      TabOrder = 2
+      ExplicitLeft = -5
+      object shpMinhoca: TShape
+        Left = 379
+        Top = 400
+        Width = 5
+        Height = 46
+        Brush.Color = clLightsalmon
+        Pen.Color = clMaroon
+        Pen.Style = psClear
+        Shape = stRoundRect
+      end
+      object Shape1: TShape
+        Left = 0
+        Top = 224
+        Width = 800
+        Height = 3
+        Pen.Style = psDot
       end
     end
   end
