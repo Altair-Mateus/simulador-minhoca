@@ -52,19 +52,16 @@ type
     procedure InicializaTela;
 
     procedure ExecutarSimulacao(Sender: TObject);
-
-    procedure PosicaoMinhocaAlterada(
-      const pPosicao: Double);
+    procedure PosicaoMinhocaAlterada(const pPosicao: Double);
 
     procedure MinhocaChegouNaMetade;
     procedure MinhocaSaiuDoBuraco;
-
     procedure PosicionarMinhoca;
 
-    function ConverterPosicaoParaPixel(
-      const pPosicao: Double): Integer;
+    function ConverterPosicaoParaPixel(const pPosicao: Double): Integer;
 
     procedure Iniciar;
+    procedure ConfiguraTimer;
 
   public
     { Public declarations }
@@ -90,7 +87,6 @@ var
   lPercurso: Integer;
 begin
   lProfundidade := StrToFloat(edtProfundidade.Text);
-
   lPercurso := (pnlMinhoca.ClientHeight - shpMinhoca.Height);
 
   Result := (lPercurso - Round((pPosicao / lProfundidade) * lPercurso));
@@ -99,10 +95,6 @@ end;
 procedure TfrmPricipal.CriarObjetos;
 begin
   FTimer := TTimer.Create(Self);
-  FTimer.Interval := 50;
-  FTimer.OnTimer := ExecutarSimulacao;
-  FTimer.Enabled := False;
-
   FServiceMinhoca := nil;
 end;
 
@@ -145,11 +137,11 @@ end;
 
 procedure TfrmPricipal.InicializaTela;
 begin
+  ConfiguraTimer;
+
   edtProfundidade.Text := '20';
   edtAvanco.Text := '5';
   edtQueda.Text := '3';
-
-  FTimer.Enabled := False;
 
   lblPosicao.Caption := 'Posição: 0 cm';
   lblSubidas.Caption := 'Subidas: 0';
@@ -249,39 +241,35 @@ begin
   FTimer.Enabled := True;
 end;
 
+procedure TfrmPricipal.ConfiguraTimer;
+begin
+  FTimer.Interval := 50;
+  FTimer.OnTimer := ExecutarSimulacao;
+  FTimer.Enabled := False;
+end;
+
 procedure TfrmPricipal.MinhocaChegouNaMetade;
 begin
   pnlstatus.Color := clYellow;
-  pnlstatus.Caption :=
-    'A minhoca chegou à metade e continua...';
+  pnlstatus.Caption := 'A minhoca chegou à metade e continua...';
 end;
 
 procedure TfrmPricipal.MinhocaSaiuDoBuraco;
 begin
   pnlstatus.Color := clGreen;
   pnlstatus.Caption := 'A minhoca saiu do buraco!';
-
   FTimer.Enabled := False;
 end;
 
 procedure TfrmPricipal.PosicaoMinhocaAlterada(const pPosicao: Double);
 begin
-  shpMinhoca.Top :=
-    ConverterPosicaoParaPixel(pPosicao);
+  shpMinhoca.Top := ConverterPosicaoParaPixel(pPosicao);
 
-  lblPosicao.Caption :=
-    Format(
-    'Posição: %.1f cm',
-    [pPosicao]
-    );
+  lblPosicao.Caption := Format('Posição: %.1f cm', [pPosicao]);
 
-  lblSubidas.Caption :=
-    Format(
-    'Subidas: %d',
-    [FServiceMinhoca.QtdSubida]
-    );
+  lblSubidas.Caption := Format('Subidas: %d', [FServiceMinhoca.QtdSubida]);
 
-  if pPosicao < (StrToFloat(edtProfundidade.Text) / 2) then
+  if (pPosicao < (StrToFloat(edtProfundidade.Text) / 2)) then
   begin
     pnlstatus.Color := clWhite;
     pnlstatus.Caption := 'A minhoca está em movimento...';
@@ -291,7 +279,6 @@ end;
 procedure TfrmPricipal.PosicionarMinhoca;
 begin
   shpMinhoca.Left := ((pnlMinhoca.ClientWidth - shpMinhoca.Width) div 2);
-
   shpMinhoca.Top := (pnlMinhoca.ClientHeight - shpMinhoca.Height);
 end;
 

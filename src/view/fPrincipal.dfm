@@ -151,7 +151,7 @@ object frmPricipal: TfrmPricipal
         ExplicitWidth = 185
         ExplicitHeight = 41
         object lblPosicao: TLabel
-          Left = 321
+          Left = 449
           Top = 12
           Width = 62
           Height = 19
@@ -164,7 +164,7 @@ object frmPricipal: TfrmPricipal
           ParentFont = False
         end
         object lblSubidas: TLabel
-          Left = 476
+          Left = 604
           Top = 12
           Width = 63
           Height = 19
@@ -179,7 +179,7 @@ object frmPricipal: TfrmPricipal
         object pnlstatus: TPanel
           Left = 0
           Top = 0
-          Width = 305
+          Width = 417
           Height = 39
           Align = alLeft
           BevelOuter = bvNone

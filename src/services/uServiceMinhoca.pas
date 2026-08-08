@@ -21,7 +21,6 @@ type
 
     procedure ValidaEventos;
     procedure CriarMinhoca(const pProfundidade, pAvanco, pQueda: Double);
-    function GetPosicao: Double;
     function GetQtdSubida: Integer;
 
     procedure Subir;
@@ -33,15 +32,14 @@ type
     procedure NotificarSaiuDoBuraco;
 
   public
+    property QtdSubida: Integer read GetQtdSubida;
+
     constructor Create(const pProfundidade, pAvanco, pQueda: Double; const pOnPosAlterada: TEventoPosicaoMinhoca;
       const pOnChegadaMetda, pOnSaiuBuraco: TEventoMinhoca);
 
     destructor Destroy; override;
 
     procedure Executar;
-
-    property Posicao: Double read GetPosicao;
-    property QtdSubida: Integer read GetQtdSubida;
 
   end;
 
@@ -115,11 +113,6 @@ begin
   end;
 end;
 
-function TServiceMinhoca.GetPosicao: Double;
-begin
-  Result := FMinhoca.Posicao;
-end;
-
 function TServiceMinhoca.GetQtdSubida: Integer;
 begin
   Result := FMinhoca.QtdSubidas;
@@ -148,8 +141,7 @@ end;
 
 procedure TServiceMinhoca.Subir;
 begin
-  FMinhoca.Posicao :=
-    FMinhoca.Posicao + FMinhoca.Avanco;
+  FMinhoca.Posicao := (FMinhoca.Posicao + FMinhoca.Avanco);
 
   FMinhoca.IncSubida;
 
