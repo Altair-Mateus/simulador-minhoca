@@ -68,23 +68,23 @@ object frmPricipal: TfrmPricipal
         object lblProfundidade: TLabel
           Left = 16
           Top = 24
-          Width = 120
+          Width = 105
           Height = 16
-          Caption = 'Profundidade Buraco'
+          Caption = 'Profundidade (cm)'
         end
         object lblAvanco: TLabel
-          Left = 167
+          Left = 199
           Top = 24
-          Width = 42
+          Width = 72
           Height = 16
-          Caption = 'Avan'#231'o'
+          Caption = 'Avan'#231'o (cm)'
         end
         object lblQueda: TLabel
-          Left = 319
+          Left = 351
           Top = 24
-          Width = 38
+          Width = 68
           Height = 16
-          Caption = 'Queda'
+          Caption = 'Queda (cm)'
         end
         object edtProfundidade: TNumberBox
           Left = 15
@@ -94,21 +94,21 @@ object frmPricipal: TfrmPricipal
           TabOrder = 0
         end
         object edtAvanco: TNumberBox
-          Left = 167
+          Left = 199
           Top = 46
           Width = 121
           Height = 24
           TabOrder = 1
         end
         object edtQueda: TNumberBox
-          Left = 319
+          Left = 351
           Top = 46
           Width = 121
           Height = 24
           TabOrder = 2
         end
         object btnIniciar: TButton
-          Left = 464
+          Left = 496
           Top = 24
           Width = 75
           Height = 47
